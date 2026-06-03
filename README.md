@@ -1,18 +1,30 @@
-Median iOS
-============
+# Native iOS Web App Framework
 
-This is the native iOS code used by https://median.co/
+This repository contains the native iOS source code for building full-featured applications from existing mobile-optimized web platforms.
 
-It allows the creation of full-featured native apps from existing mobile-optimized websites.
+The framework provides integration between web content and native iOS capabilities, allowing developers to package web applications as native iOS apps while maintaining access to device features and platform-specific functionality.
 
-How to use
-------------
+## Features
 
-This project uses [Tuist](https://tuist.io/) for project generation and dependency management.
+* Native iOS application container
+* Web-to-native bridge support
+* Push notification integration
+* Camera and file access
+* Location services support
+* Deep linking
+* Custom native modules
+* Swift Package Manager dependency management
+
+---
+
+## Getting Started
+
+This project uses Tuist for project generation and dependency management.
 
 ### Prerequisites
 
 Install Tuist:
+
 ```bash
 curl -Ls https://install.tuist.io | bash
 ```
@@ -23,47 +35,109 @@ curl -Ls https://install.tuist.io | bash
 tuist generate
 ```
 
-This will:
-- Generate `MedianIOS.xcworkspace` and `MedianIOS.xcodeproj`
-- Resolve Swift Package Manager dependencies
-- Configure targets and build settings
+This command will:
 
-### Build the Project
+* Generate the Xcode workspace and project files
+* Resolve Swift Package Manager dependencies
+* Configure build settings and targets
 
-After generation, open the workspace:
-```bash
-open MedianIOS.xcworkspace
-```
-
-Or build from the command line:
-```bash
-tuist build Median
-```
-
-### Additional Commands
-
-- `tuist clean` - Clean generated files
-- `tuist edit` - Edit Tuist manifests in Xcode
-- `tuist graph` - Visualize project dependencies
-
-For more details, see the [build documentation](https://median.co/docs/build-ios-from-source).
-
-### Troubleshooting
-
-#### Checksum mismatch error when resolving packages
-
-If `tuist generate` fails with an error like:
-
-```
-invalid registry source archive checksum '...', expected '...'
-```
-
-This is caused by a stale fingerprint entry in SPM's security store (separate from all other caches). It occurs when a package version is deleted and republished on the registry. Fix it by deleting the cached fingerprint for the affected package:
+### Open the Project
 
 ```bash
-rm ~/.swiftpm/security/fingerprints/median.go-native-core.json
+open App.xcworkspace
 ```
 
-Then re-run `tuist generate`. SPM will re-trust the new checksum on first fetch.
+### Build the Application
 
-Licensing information available at https://median.co/license
+Using Tuist:
+
+```bash
+tuist build App
+```
+
+Or build directly through Xcode.
+
+---
+
+## Project Structure
+
+```text
+.
+├── App
+├── Core
+├── Features
+├── Resources
+├── Tuist
+├── Project.swift
+└── README.md
+```
+
+---
+
+## Development Commands
+
+Generate project:
+
+```bash
+tuist generate
+```
+
+Clean generated files:
+
+```bash
+tuist clean
+```
+
+Edit manifests:
+
+```bash
+tuist edit
+```
+
+Visualize dependencies:
+
+```bash
+tuist graph
+```
+
+Build application:
+
+```bash
+tuist build
+```
+
+---
+
+## Configuration
+
+Application settings can be customized through the project configuration files and environment settings.
+
+Common customizations include:
+
+* App Name
+* Bundle Identifier
+* App Icons
+* Splash Screens
+* Web Endpoint URL
+* Push Notification Configuration
+* Native Permissions
+
+---
+
+## Requirements
+
+* macOS
+* Xcode 16+
+* Swift 5.10+
+* Tuist
+* iOS 16.0+
+
+---
+
+## License
+
+Copyright © 2026.
+
+All rights reserved.
+
+This software is proprietary and intended for private use. Redistribution, modification, or commercial distribution without explicit permission from the owner is prohibited.
